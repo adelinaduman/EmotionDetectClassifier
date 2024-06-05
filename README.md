@@ -12,10 +12,10 @@ The speech segments are extracted from the Emotional Prosody Speech and Transcri
 - Emotions: 15 emotions (anxiety, boredom, cold-anger, contempt, despair, disgust, elation, happy, hot-anger, interest, neutral, panic, pride, sadness, shame)
 
 # Notebooks: 
---- Features.ipynb: In this notebook I perform Feature Analysis: extract six features from each speech segment:
+- Features.ipynb: In this notebook I perform Feature Analysis: extract six features from each speech segment:
     - Min, max, mean of pitch
     - Min, max, mean of intensity
---  Classification_features.ipynb:  Used openSMILE toolkit and Random Forest classifier for emotion prediction. 
+-  Classification_features.ipynb:  Used openSMILE toolkit and Random Forest classifier for emotion prediction. 
 
 # How to Run
 Ensure Praat, Parselmouth, and openSMILE are installed.
