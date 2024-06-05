@@ -2,8 +2,7 @@
 ## EmotionDetectClassifier: Machine Learning for Emotion Recognition in Speech
 
 ## Project Overview
-EmotionDetectClassifier is a  project focused on recognizing emotions in speech using machine learning techniques. The project leverages the Emotional Prosody Speech and Transcripts dataset, containing 2,324 WAV files from seven speakers, labeled with 15 distinct emotions. The aim is to extract meaningful features, perform classification experiments, and conduct error analysis to improve emotion 
-recognition accuracy.
+EmotionDetectClassifier is a  project focused on recognizing emotions in speech using machine learning techniques. It leverages the Emotional Prosody Speech and Transcripts dataset, containing 2,324 WAV files from seven speakers, labeled with 15 distinct emotions. The aim is to extract meaningful speech features, perform classification experiments, and conduct error analysis to improve emotion recognition accuracy.
 
 # Dataset
 The speech segments are extracted from the Emotional Prosody Speech and Transcripts dataset. The dataset includes:
