@@ -46,35 +46,32 @@ Hyperparameter Optimization: Fine-tuning the model's parameters can sometimes le
 I chose this particular model type because it's an ensemble learning method for classification. For classification tasks, the output is determined by the majority voting of decision trees, making the RandomForest model —> especially robust against overfitting and effective in handling complex data structures. Because it can handle non-linear relationships, and is robust to overfitting, I decided to proceed with this model type. 
 
 # Architecture — Parameters and Configuration:
-n_estimators: This parameter controls the number of trees in the forest. In script, two values are tested: 100 and 200, which provide a good range to evaluate best performance, but still grid is not too large to make it too computationally expensive
-max_depth: maximum depth of each tree. Script tests trees with maximum depths of 10 and 20.
-min_samples_split: min # of samples required to split internal nodes. I tested values – 2 and 5, which influenced - how detailed each tree in the forest can get.
-min_samples_leaf: min # of samples required to be at leaf node.  I tested - 1 and 2, that also control granularity of learned patterns at leaf level. This parameter, therefore  affecting both bias and variance. I did not include a lot of values here to not make it too varied, but still I did not want to underfit
+- n_estimators: This parameter controls the number of trees in the forest. In script, two values are tested: 100 and 200, which provide a good range to evaluate best performance, but still grid is not too large to make it too computationally expensive
+- max_depth: maximum depth of each tree. Script tests trees with maximum depths of 10 and 20.
+- min_samples_split: min # of samples required to split internal nodes. I tested values – 2 and 5, which influenced - how detailed each tree in the forest can get.
+- min_samples_leaf: min # of samples required to be at leaf node.  I tested - 1 and 2, that also control granularity of learned patterns at leaf level. This parameter, therefore  affecting both bias and variance. I did not include a lot of values here to not make it too varied, but still I did not want to underfit
 
 # Hyperparameter Tuning Part – 
-I Used Grid Search(with cv=3), to explore combinations of the above parameters. I wanted to optimize the RandomForestClassifier performance. Model training did not take a long time, and tuning improved my performance from 0.17 aggregate accuracy to 0.21 which is a good improvement. 
-I also used —- Leave-One-Group-Out Cross-Validation which made the model more generalizable across unseen data. I believe that this method is particularly effective for this dataset where  data may have group-specific characteristics – in this case, the different speakers.
-Execution and Evaluation: 
+-- I Used Grid Search(with cv=3), to explore combinations of the above parameters. I wanted to optimize the RandomForestClassifier performance. Model training did not take a long time, and tuning improved my performance from 0.17 aggregate accuracy to 0.21 which is a good improvement. 
+
+-  I also used —- Leave-One-Group-Out Cross-Validation which made the model more generalizable across unseen data. I believe that this method is particularly effective for this dataset where  data may have group-specific characteristics – in this case, the different speakers.
+
+# Execution and Evaluation: 
 I used classification reports from sklearn. I return aggregated average accuracy and aggregated average F1 over the 7 experiments. 
-Detailed classification report Output for Each Fold:
-best-performing model parameters and the corresponding performance metrics are outputted, offering detailed insights into how model settings impact performance.
+- Detailed classification report Output for Each Fold: best-performing model parameters and the corresponding performance metrics are outputted, offering detailed insights into how model settings impact performance.
 
 
 
 # Analysis of the Results: 
-Analyzing results from my best performing leave-one-speaker-out experiment – It was Third fold with an aggregate accuracy of 0.28, we see mixed results across different emotions, indicating varying levels of difficulty in emotion classification. This were results for Fold 3:  
- precision    recall  f1-score   support
-accuracy         0.28       420
-  macro avg       0.26      0.28      0.25       420
-weighted avg       0.29      0.28      0.26       420
-Best classifier parameters were: RandomForestClassifier(max_depth=20, n_estimators=200, random_state=42), therefore 20 for max_depth and 200 for n_estimators. These results were improvements compared to the base model I had which did not do any tuning, that had an overall accuracy of around 0.17. However the model is still lacking, it is performing better than random chance, there's still  substantial room for improvement.
+Analyzing results from my best performing leave-one-speaker-out experiment – It was Third fold with an aggregate accuracy of 0.28, we see mixed results across different emotions, indicating varying levels of difficulty in emotion classification.
 
-In addition, the poor performance and errors, could be due to class imbalance. The speaker gg has more examples, compared to the cc which has only 265, this caused variability inr results and lowered the performance(lower aggregate accuracy).
+
+# Best classifier parameters were: RandomForestClassifier(max_depth=20, n_estimators=200, random_state=42)
+- These results were improvements compared to the base model I had which did not do any tuning, that had an overall accuracy of around 0.17. However the model is still lacking, it is performing better than random chance, there's still  substantial room for improvement. In addition, the poor performance and errors, could be due to class imbalance. The speaker gg has more examples, compared to the cc which has only 265, this caused variability inr results and lowered the performance(lower aggregate accuracy).
 
 
 # Best Predicted/Easiest Classes:
--- Overall across my results, Elation and Hot-Anger emotions –  showed relatively high precision and recall. The reason why I think they were predicted the best, is becaus these particular  emotions might have distinct or exaggerated features in speech which makes them more distinguishable by the classifier.
-- Here the f-1 score is almost 0.57 which is really high compared to lower results that have values around 0.05--0.10. My Random Forest classifier here  is doing a good job  recognizing happiness from speech. I believe this is due to specific acoustic characteristics associated with happiness, such as — higher pitch, increased speech rate, and overall positive affect, likely contributing to its higher ease of prediction and overall high results.
+-- Overall across my results, Elation and Hot-Anger emotions –  showed relatively high precision and recall. The reason why I think they were predicted the best, is becaus these particular  emotions might have distinct or exaggerated features in speech which makes them more distinguishable by the classifier. Here the f-1 score is almost 0.57 which is really high compared to lower results that have values around 0.05--0.10. My Random Forest classifier here  is doing a good job  recognizing happiness from speech. I believe this is due to specific acoustic characteristics associated with happiness, such as — higher pitch, increased speech rate, and overall positive affect, likely contributing to its higher ease of prediction and overall high results.
 - Hot-anger also shows relatively high precision, recall, and F1-score across most folds. Hot-anger  for the third fold has    0.50  for precision,    0.64  for recall which is pretty high and    0.56 for f1-score and it is pretty consistent across all folds.   The strong intensity and characteristic vocal features that are usually  associated with anger, and can be observed in extracted features –like raised pitch, rapid speech rate, and heightened volume are reasons why it is easier to predict. Therefore, it is more distinguishable from other emotions, resulting in better predictions
 - Disgust is the 3rd emotion that is also easily predicted.  Disgust exhibits reasonably high precision, but lower recall and F1-score compared to happy and hot-anger(disgust had 0.59 precision,       0.20 recall   and  0.29 f-1score ) High precision suggests that my classifier is relatively successful in identifying disgust from other forms of speech. I believe that specific vocal cues like vocal tension, nasality, and harshness associated with disgust that are really specific to this emotion — contribute to its relatively easier recognition.
 
