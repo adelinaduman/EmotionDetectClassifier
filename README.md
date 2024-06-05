@@ -29,14 +29,14 @@ Run the classification.ipynb script for classification experiments.
 - openSMILE Toolkit: openSMILE
 
 ## Possible Improvements:
--- Feature Engineering, to improve performance, I can introduce new features or refine existing ones to capture more nuances in emotional speech. For example,  features like intonation patterns, speech tempo, and energy levels might enhance the classifier's ability to differentiate between subtly different emotions that performed not well - like despair, neural, sadness etc.
+- Feature Engineering, to improve performance
+  - Introducing new features or refining existing ones to capture more nuances in the emotional speech. For example,  features like intonation patterns, speech tempo, and energy levels might enhance the classifier's ability to differentiate between subtly different emotions that performed not well - like despair, neural, sadness etc.
 
--- Experiment with advanced Modeling Techniques, trying other models that can capture temporal patterns like LSTM or using a more nuanced ensemble method(Boosted Tree) and performing more hyperparameter tuning, might also produce better results. Specifically to my case – that 200 trees and a depth of 20 provided best results so far, experimenting within a close range to these values while adjusting other parameters like min_samples_split and min_samples_leaf 
+- Experiment with advanced Modeling Techniques
+  - Trying other models that can capture temporal patterns like LSTM or using a more nuanced ensemble method(Boosted Tree) and performing more hyperparameter tuning, might also produce better results. Specifically to my case – that 200 trees and a depth of 20 provided best results so far, experimenting within a close range to these values while adjusting other parameters like min_samples_split and min_samples_leaf 
 
--- Using techniques like SMOTE for oversampling the minority classes or adjusting class weights in classifiers might help improve the recall for underrepresented emotions. In addition, as outlined above the dataset was imbalanced, some speakers like gg had more examples(around 400), which produced better results. Making the dataset more consistent and having similar distributions is also a way for me to improve the 
-
--- Randomforest classifier. 
-Hyperparameter Optimization: Fine-tuning the model's parameters can sometimes lead to better performance. Considering a broader or more focused range based on preliminary results can help. Given that 200 trees and a depth of 20 provided the best results so far, experimenting within a close range to these values while adjusting other parameters like min_samples_split and min_samples_leaf could refine performance 
+- Using techniques like SMOTE 
+    - For oversampling the minority classes or adjusting class weights in classifiers might help improve the recall for underrepresented emotions. In addition, as outlined above the dataset was imbalanced, some speakers like gg had more examples(around 400), which produced better results. Making the dataset more consistent and having similar distributions is also a way for me to improve the 
 
 
 
